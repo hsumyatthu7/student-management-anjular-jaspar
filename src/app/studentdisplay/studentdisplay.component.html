@@ -1,0 +1,131 @@
+<head>
+  <title>Course Registration</title>
+</head>
+
+<body>
+  <div id="testheader">
+    <div class="container">
+      <div class=row>
+        <div class="col-md-5 ">
+          <a routerLink="/menu" routerLinkActive="active">
+            <h3>Student Registration</h3>
+          </a>
+        </div>
+        <div class="col-md-6">
+          <p>User:{{currentUser}}</p>
+          <p>Current Date :{{time}}
+          <p>
+        </div>
+        <div class="col-md-1">
+          <!-- <a class="col-md-1" href="@{/logout}" >
+            <input type="button" class="btn-basic" id="lgnout-button"  >
+        </a> --> <a class="col-md-1" routerLink="/login">Logout</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- <div id="testsidebar">Hello World </div> -->
+  <div class="container">
+    <div class="sidenav">
+
+
+      <a routerLink="/course" routerLinkActive="active">Course Registration </a>
+      <a routerLink="/studentadd" routerLinkActive="active">Student Registration </a>
+      <a routerLink="/student" routerLinkActive="active">Student Search </a>
+      <a routerLink="/user" routerLinkActive="active">Users Management</a>
+    </div>
+    <div class="main_contents">
+      <div id="sub_content">
+
+        <form class="row g-3 mt-3 ms-2">
+          <div class="col-auto">
+            <label for="staticEmail2" class="visually-hidden">studentID</label>
+            <input type="text" class="form-control" id="staticEmail2" placeholder="Student ID" name="searchId"
+              [(ngModel)]="searchId">
+          </div>
+          <div class="col-auto">
+            <label for="inputPassword2" class="visually-hidden">studentName</label>
+            <input type="text" class="form-control" id="inputPassword2" placeholder="Student Name" name="searchName"
+              [(ngModel)]="searchName">
+          </div>
+          <div class="col-auto">
+            <label for="inputPassword2" class="visually-hidden">Course</label>
+            <input type="text" class="form-control" id="inputPassword2" placeholder="Course" name="searchCourse"
+              [(ngModel)]="searchCourse">
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-success mb-3">Search</button>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-secondary mb-3">Reset</button>
+          </div>
+          <div class="col-auto">
+            Export to :
+            <button (click)="export(pdf)" class="btn btn-danger mb-3" style="background-color: #099b6d;">PDF</button>
+
+          </div>
+
+          <div class="col-auto">
+
+            <button (click)="export(html)" class="btn btn-danger mb-3" style="background-color: #099b6d;">HTML</button>
+          </div>
+          <div class="col-auto">
+
+            <!-- <button (click)="export(excel)" class="btn btn-danger mb-3" style="background-color: #099b6d;">Excel</button> -->
+
+            <button (click)="exportExcel()" class="btn btn-danger mb-3"
+              style="background-color: #099b6d;">Excel</button>
+          </div>
+
+        </form>
+        <div>
+          <table class="table table-striped" id="stduentTable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Student ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let student of students | filter:searchId | filter:searchName | filter:searchCourse">
+                <td>#</td>
+                <td>{{student.studentId}}</td>
+                <td>{{student.studentName}}</td>
+                <td>{{student.studentCourse}}</td>
+
+                <!-- <a routerLink="/studentupdate" routerLinkActive="active">See More</a> -->
+                <td><button (click)="updateStudent(student.studentId)" class="btn btn-primary"> See More</button></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<div id="testfooter">
+  <span>Copyright &#169; ACE Inspiration 2022</span>
+</div>
+<script>
+  /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+  var i;
+
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var dropdownContent = this.nextElementSibling;
+      if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+      } else {
+        dropdownContent.style.display = "block";
+      }
+    });
+  }
+</script>

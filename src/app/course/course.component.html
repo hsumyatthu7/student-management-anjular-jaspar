@@ -1,0 +1,119 @@
+<head> 
+        <title>Course Registration</title>
+</head>
+
+<body>
+    <form  (ngSubmit)="onSubmit()" [formGroup]="courseForm">
+    <div id="testheader">
+        <div class="container">
+            <div class=row>        
+                <div class="col-md-5 ">
+                    <a routerLink="/menu" routerLinkActive="active"><h3>Student Registration</h3></a>
+        </div>  
+            <div class="col-md-6">
+                 <p>User:{{currentUser}}</p>
+                 <p>Current Date : {{time}} </p>
+            </div>  
+        <div class="col-md-1" >
+                  
+        <a class="col-md-1" routerLink="/logout" >Logout</a>
+        </div>        
+    </div>
+</div>
+
+</div>
+
+    <div class="container">
+    <div class="sidenav">
+        
+        
+                <a routerLink="/course" routerLinkActive="active">Course Registration </a>
+                <a routerLink="/studentadd" routerLinkActive="active">Student Registration </a>
+                <a routerLink="/student" routerLinkActive="active">Student Search </a>          
+                 <a routerLink="/user" routerLinkActive="active">Users Management</a>
+      </div>
+      <div class="main_contents">
+    <div id="sub_content">
+    
+     
+        <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Course Registration</h2>
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="id" class="col-md-2 col-form-label"> ID</label>
+            <div class="col-md-4">
+                <input formControlName="courseId" [ngClass]="{'is-invalid':submitted && courseForm.controls['courseId'].errors}" type="text" class="form-control" id="id"  placeholder="Course Id" [(ngModel)]="course.courseId" name="courseId" required>
+                <!-- <small *ngIf="courseForm.controls['courseId'].dirty && courseForm.hasError('required')"  style="color: red;">Course ID is required</small> -->
+                <!-- <span *ngIf="courseError.id.hasError" id="error">{{ courseError.id.msg }}</span> -->
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="name" class="col-md-2 col-form-label">Name</label>
+            <div class="col-md-4">
+            <!-- <input formControlName="courseName" type="text" class="form-control" id="name" placeholder="Course Name" [(ngModel)]="course.courseName" name="courseName"> -->
+            <input formControlName="courseName" [ngClass]="{'is-invalid':submitted && courseForm.controls['courseName'].errors}" type="text" class="form-control" id="id"  placeholder="Course Name" [(ngModel)]="course.courseName" name="courseName" required>
+
+            </div>
+        </div>
+      
+       
+        <div class="row mb-4">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-6">
+               
+
+                <button type="submit" class="btn btn-secondary col-md-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Course Registration</h5>
+                                <button type="submit" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5 style="color: rgb(127, 209, 131);">Registered Successfully !</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success col-md-2" data-bs-dismiss="modal">Ok</button>
+                               
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+        
+    </div></div>
+    </div>
+    </div>
+    </form>
+    
+    </body>
+
+
+
+        <div id="testfooter">
+            <span>Copyright &#169; ACE Inspiration 2022</span>
+        </div>
+        <script>
+            /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+            var dropdown = document.getElementsByClassName("dropdown-btn");
+            var i;
+            
+            for (i = 0; i < dropdown.length; i++) {
+              dropdown[i].addEventListener("click", function() {
+              this.classList.toggle("active");
+              var dropdownContent = this.nextElementSibling;
+              if (dropdownContent.style.display === "block") {
+              dropdownContent.style.display = "none";
+              } else {
+              dropdownContent.style.display = "block";
+              }
+              });
+            }
+            </script>
+

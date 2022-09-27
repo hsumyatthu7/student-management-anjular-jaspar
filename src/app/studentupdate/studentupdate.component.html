@@ -1,0 +1,193 @@
+<head>  
+    <title>Course Registration</title>
+</head>
+
+<body>
+<div id="testheader">
+    <div class="container">
+        <div class=row>        
+            <div class="col-md-5 ">
+                <a routerLink="/menu" routerLinkActive="active"><h3>Student Registration</h3></a>
+    </div>  
+    <div class="col-md-6">
+          <p>User:{{currentUser}}</p>
+        <p>Current Date :{{time}}</p>
+    </div>  
+    <div class="col-md-1" >
+         
+    <a class="col-md-1" routerLink="/login" >Logout</a>
+    </div>        
+</div>
+</div>
+
+</div>
+<!-- <div id="testsidebar">Hello World </div> -->
+<div class="container">
+<div class="sidenav">
+    
+    
+           <a routerLink="/course">Course Registration </a>
+           <a routerLink="/studentadd">Student Registration </a>
+           <a routerLink="/student">Student Search </a>
+        
+        <a routerLink="/user">Users Management</a>
+  </div>
+  <div class="main_contents">
+<div id="sub_content">
+
+
+    <form >
+
+        <h2 class="col-md-6 offset-md-2 mb-5 mt-4">Student Details</h2>
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="studentID" class="col-md-2 col-form-label">Student ID</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control"  id="id"  [(ngModel)]="student.studentId" name="studentId" disabled>
+                
+            </div>
+             <!-- <p th:if="${#fields.hasErrors('studentId')}" th:errors="*{studentId}" style="color:red" ></p> -->
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="name" class="col-md-2 col-form-label">Name</label>
+            <div class="col-md-4">
+                 <input type="text" class="form-control" id="name" [(ngModel)]="student.studentName" name="studentName">
+                
+            </div>
+            <!-- <p th:if="${#fields.hasErrors('studentName')}" th:errors="*{studentName}" style="color:red" ></p> -->
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="dob" class="col-md-2 col-form-label" >DOB</label>
+            <div class="col-md-4">
+             <input type="date" class="form-control"  id="dob" [(ngModel)]="student.studentDob" name="studentDob">
+                 
+            </div>
+              <!-- <p th:if="${#fields.hasErrors('studentDob')}" th:errors="*{studentDob}" style="color:red" ></p> -->
+        </div>
+              <fieldset class="row mb-4">
+            <div class="col-md-2"></div>
+            <legend class="col-form-label col-md-2 pt-0">Gender</legend>
+            <div class="col-md-4">
+                <div class="form-check-inline">
+                      <!-- <input type="radio" class="form-check-input" value="Male" [(ngModel)]="student.studentGender" name="studentGender"> -->
+                      <input type="radio" class="form-check-input" id="gridRadios1" value="male" name="studentGender" [(ngModel)]="student.studentGender">
+
+                    <label class="form-check-label" for="gridRadios1">
+                        Male
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                   <!-- <input type="radio" class="form-check-input"  value="Female" [(ngModel)]="student.studentGender" name="studentGender"> -->
+                   <input type="radio" class="form-check-input" id="gridRadios1" value="male" name="studentGender" [(ngModel)]="student.studentGender">
+
+                   <label class="form-check-label" for="gridRadios2">
+                        Female
+                    </label>
+                </div>
+    <!-- <p th:if="${#fields.hasErrors('studentGender')}"   style="color:red" ></p> -->
+            </div>
+        </fieldset>
+
+        <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="phone" class="col-md-2 col-form-label">Phone</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="phone" placeholder="+95 "  [(ngModel)]="student.studentPhone" name="studentPhone">
+            </div>
+            <!-- <p th:if="${#fields.hasErrors('studentPhone')}" th:errors="*{studentPhone}" style="color:red" ></p> -->
+        </div>
+                    <div class="row mb-4">
+            <div class="col-md-2"></div>
+            <label for="education" class="col-md-2 col-form-label">Education</label>
+            <div class="col-md-4">
+                <select class="form-select" aria-label="Education" id="education"[(ngModel)]="student.studentEducation" name="studentEducation">
+                    <option value="B.IT" >Bachelor of Information Technology</option>
+                    <option value="D.IT">Diploma in IT</option>
+                    <option value="B.CS">Bachelor of Computer Science</option>
+
+                </select>
+            </div>
+        </div>
+        <fieldset class="row mb-4">
+            <div class="col-md-2"></div>
+            <legend class="col-form-label col-md-2 pt-0">Attend</legend>
+            
+            
+            <div class="col-md-4 gap-3 d-flex flex-wrap">
+
+                <div *ngFor="let course of courses" class="d-flex gap-1">
+                    <label >{{ course.courseName}}</label>
+                    <!-- <input  type="checkbox" class="form-check" [value]="course.courseId" id="studentCourse" name="studentCourse"> -->
+                    <input (change)="handleSetCourse(course.courseName)" type="checkbox" class="form-check" [value]="course.courseName" id="studentCourse" name="studentCourse">
+
+                </div>
+                
+                </div>
+              <div class="col-md-4">
+              <!-- <p th:if="${#fields.hasErrors('studentCourse')}"  th:errors="*{studentCourse}"  style="color:red" ></p> -->
+            </div>
+        
+        </fieldset>
+        <div class="row mb-4">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4">
+                
+             
+                    
+                   <td>  <button (click)="updateStudent(studentId,student)" class="btn btn-secondary" style="background-color: green;">Update</button></td>
+                  <td>  <button (click)="deleteStudent(studentId)" class= "btn btn-secondary" style="background-color: red;">Delete</button>  </td>
+                  <!-- "btn btn-secondary mb-3" -->
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Student Deletion</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+                                <button type="submit" class="btn btn-danger">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </form>
+</div>
+</div>
+</div></body>
+    <div id="testfooter">
+        <span>Copyright &#169; ACE Inspiration 2022</span>
+    </div>
+    <script>
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+        
+        for (i = 0; i < dropdown.length; i++) {
+          dropdown[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var dropdownContent = this.nextElementSibling;
+          if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+          } else {
+          dropdownContent.style.display = "block";
+          }
+          });
+        }
+        </script>
+
+
+ 
